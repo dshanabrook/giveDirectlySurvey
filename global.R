@@ -88,7 +88,7 @@ if (F){
 	wordsToRemove <- c("mary,george,joyce")
 	excludeWords <- unlist(strsplit(wordsToRemove,","))
 	
-	theQuestion <- theQuestions[2]
+	theQuestion <- theQuestions[3]
 	noNumbers <- F
 	noQuestions <- F
 	wordsToExclude <- c("difference", "biggest")
@@ -100,5 +100,7 @@ if (F){
 	if (is.numeric(data[,questionNumber]))
 		hist(data[,questionNumber],main=theQuestion,xlab="",col=brewer.pal(8, "Dark2"))
 	else
-		wordcloud(corpusDF[questionNumber, ])
+		wordcloud(corpusDF[questionNumber, ],scale=c(4,0.5),
+                   colors=brewer.pal(8, "Dark2"),
+                   main=theQuestions[questionNumber])
 	}

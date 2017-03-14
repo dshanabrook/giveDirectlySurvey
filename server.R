@@ -14,6 +14,7 @@ shinyServer(function(input, output, session) {
 						col=brewer.pal(8, "Dark2"))
 		else
 			wordcloud(corpusDF()[questionNumber(), ],scale=c(4,0.5),
-                   max.words=input$max,colors=brewer.pal(8, "Dark2"))
+                   max.words=input$max,colors=brewer.pal(8, "Dark2"),
+                   main=theQuestions[questionNumber()])
 	})
 })
