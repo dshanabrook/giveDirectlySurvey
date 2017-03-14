@@ -23,7 +23,6 @@ getQuestions <- function(data, questionNumber=NULL) {
 getCorpusQ <- function(questions){	
 	corpusQ <- Corpus(VectorSource(questions))
 	corpusQ <- tm_map(corpusQ,  content_transformer(tolower))
-#	corpusQ <- tm_map(corpusQ, removeWords,stopwords("en"))
 	corpusQ <- tm_map(corpusQ, removePunctuation)
 	return(corpusQ)
 	}	
@@ -37,8 +36,7 @@ changeYesNoToTFNA <- function(dataField){
 
 frequencies <- function(words){
 	corpus <- Corpus(VectorSource(words))    
-	dtm <- TermDocumentMatrix(corpus,
-	 control = list(removeNumbers = F,stopwords = F,stemming = F))
+	dtm <- TermDocumentMatrix(corpus)
 	m <- as.matrix(dtm)
 	v <- sort(rowSums(m),decreasing=TRUE)
 	d <- data.frame(word = names(v),freq=v)
@@ -48,14 +46,12 @@ frequencies <- function(words){
 trimCorpus <- function(corpusQ, noNumbers, noQuestions, wordsToExclude = "") {
 
 	corpusD <- tm_map(corpus, content_transformer(tolower))
-
 	if (noNumbers) 
 		corpusD <- tm_map(corpusD, removeNumbers)
 	if (noQuestions) 
 		corpusD <- tm_map(corpusD, removeWords, corpusQ[]$content)	
-	print(wordsToExclude)
 	corpusD <- tm_map(corpusD, removeWords, wordsToExclude)
-	corpusD <- tm_map(corpusD, removeWords,myStopwords)	
+	corpusD <- tm_map(corpusD, removeWords,stopwords("en"))	
 	corpusD <- tm_map(corpusD, removePunctuation)
 	return(corpusD)
 	}
@@ -66,16 +62,10 @@ createCorpusDF <- function(corpusD) {
 	return(corpusDF)
 }
 
-
-exceptions   <- c("no")
-myStopwords <- setdiff(stopwords("en"), "exceptions")
-	
-data <- read.csv("~/ShinyApps/giveDirectly/data/basicIncome.csv", as.is=T, header=F)
+data <- read.csv("data/basicIncome.csv", as.is=T, header=F)
 data <- data[,-4]
 theQuestions <- data[1,]
 names(theQuestions) <- data[1,]
-#questions <- getQuestions(data, 3)
-#corpusQ <- getCorpusQ(questions)
 
 #remove header
 data <- data[-1,]
@@ -93,7 +83,7 @@ columnHeaders <- names(data)
 numResponses <- nrow(data)
 corpus <- Corpus(VectorSource(data))
 
-
+#debugging
 if (F){
 	wordsToRemove <- c("mary,george,joyce")
 	excludeWords <- unlist(strsplit(wordsToRemove,","))
