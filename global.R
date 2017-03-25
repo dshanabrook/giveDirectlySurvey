@@ -3,7 +3,7 @@
 #correct logical, numeric
 #add short header
 #return  corpusQ, data
-
+#https://docs.google.com/spreadsheets/d/1umh464Da62x6gY5zuEzlYa4Q2Fiq9igW78CQhVrGTtU/edit#gid=1770330013
 library(SnowballC)
 library(shiny)
 library(tm)

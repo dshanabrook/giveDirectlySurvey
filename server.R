@@ -5,7 +5,7 @@ shinyServer(function(input, output, session) {
 	questionNumber <- reactive(match(input$theQuestion, theQuestions))
 	
 	corpusQ <- reactive(getCorpusQ(getQuestions(data,questionNumber())))
-	corpusD <- reactive(trimCorpus(corpusQ(),FALSE, input$noQuestions,excludeWords()))
+	corpusD <- reactive(trimCorpus(corpusQ(), input$noNumbers, input$noQuestions,excludeWords()))
 	corpusDF <- reactive(createCorpusDF(corpusD()))
 	
 	output$plot <- renderPlot({
