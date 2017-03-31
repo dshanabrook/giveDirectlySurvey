@@ -1,4 +1,6 @@
 #read survey
+#Input Data File Format!:
+#First row data[1,] must be header.  
 #strip off questions, create corpus from them
 #correct logical, numeric
 #add short header
