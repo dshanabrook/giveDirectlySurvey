@@ -1,8 +1,6 @@
 #questionAnalysis
 #change these defaults for your application
-theWebPageTitle <- "Analyze survey responses using Word Clouds"
-theDefaultExclusionWords <- "kes,give,spent,buying,remaining,pay,paid,bought,buy,also,kept,amount,join,transfer,airtime,take,will,use,made,can,get,since,given,now,able,"
-theDataSource <- "http://myWebSite.com/theDataSource/forInputAndUserAccess"
+
 fluidPage(
   titlePanel(theWebPageTitle),		
 
@@ -20,6 +18,7 @@ fluidPage(
                tags$a(href= theDataSource))),
 
     # Show Word Cloud
-    mainPanel(
+    mainPanel(	
+      h3(textOutput("mainTitle")),
       plotOutput("plot")
     )))
