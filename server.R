@@ -16,7 +16,7 @@ output$mainTitle <- renderText({
 			hist(data[,questionNumber()],main="",xlab="",
 						col=brewer.pal(8, "Dark2"))
 		else
-			wordcloud(corpusDF()[questionNumber(), ],scale=c(4,0.5),
+			wordcloud(corpusDF()[questionNumber(), ],scale=c(5,0.5),
                    max.words=input$max,colors=brewer.pal(8, "Dark2"))
 	})
 })
