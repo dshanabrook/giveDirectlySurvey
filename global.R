@@ -1,4 +1,6 @@
 #read survey
+#Input Data File Format!:
+#First row data[1,] must be header.  
 #strip off questions, create corpus from them
 #correct logical, numeric
 #add short header
@@ -8,6 +10,15 @@ library(SnowballC)
 library(shiny)
 library(tm)
 library(wordcloud)
+
+#constants: 
+#theWebPageTitle
+#theDefaultExclusionWords
+#theDataSource (for documentation, not the data itself as un parsed)
+theWebPageTitle <- "Analyze survey responses using Word Clouds"
+theWebPageTitle <- "Basic Income - What it's like, Raw Responses"
+theDefaultExclusionWords <- "kes,give,spent,buying,remaining,pay,paid,bought,buy,also,kept,amount,join,transfer,airtime,take,will,use,made,can,get,since,given,now,able,"
+theDataSource <- "https://docs.google.com/spreadsheets/d/1umh464Da62x6gY5zuEzlYa4Q2Fiq9igW78CQhVrGTtU/edit#gid=1770330013"
 
 doDebug <- F
 

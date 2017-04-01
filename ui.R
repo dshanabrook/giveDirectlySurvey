@@ -1,23 +1,24 @@
-#giveDirectly UI
-#Basic Income - What it's like, Raw Responses
+#questionAnalysis
+#change these defaults for your application
 
 fluidPage(
-  titlePanel("Basic Income - What it's like, Raw Responses"),		
+  titlePanel(theWebPageTitle),		
 
   sidebarLayout(
     sidebarPanel(
-      checkboxInput("noQuestions", "Remove question words from cloud?", value=T),
-      checkboxInput("noNumbers", "Remove Numbers?", value=T),
       selectInput("theQuestion", "Choose question: ", multiple=FALSE, theQuestions),
-      textAreaInput("wordsToExclude", "Exclude these words:(no spaces) ", value="kes,give,spent,buying,remaining,pay,paid,bought,buy,also,kept,amount,join,transfer,airtime,take,will,use,made,can,get,since,given,now,able,"),
+      textAreaInput("wordsToExclude", "Exclude these words:(no spaces) ", theDefaultExclusionWords),
       submitButton(text="Update", icon=NULL),
       hr(),
     sliderInput("max","Maximum Number of Words:",
                   min = 1,  max = 30,  value = 22),
+    checkboxInput("noQuestions", "Remove question words from cloud?", value=T),
+    checkboxInput("noNumbers", "Remove Numbers?", value=T),
  	tags$div(class = "header", checked = NA,
-               tags$a(href="https://docs.google.com/spreadsheets/d/1umh464Da62x6gY5zuEzlYa4Q2Fiq9igW78CQhVrGTtU/edit#gid=1770330013", "Raw Data Download"))),
+               tags$a(href= theDataSource))),
 
     # Show Word Cloud
-    mainPanel(
+    mainPanel(	
+      h3(textOutput("mainTitle")),
       plotOutput("plot")
     )))
