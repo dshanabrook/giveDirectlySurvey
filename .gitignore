@@ -1,4 +1,6 @@
 
 rsconnect/shinyapps.io/bravo/givedirectly.dcf
 .Rapp.*
+.RHistory
+.RData
 *.dcf
